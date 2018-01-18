@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import CharacterList from './components/CharacterList'
+import React, { Component } from "react"
+import logo from "./logo.svg"
+import "./App.css"
+import CharacterList from "./components/CharacterList"
 
 class App extends Component {
-  state = {characters: null}
-
-  componentWillMount() {
-    console.log('mounting')
-    fetch('http://galvanize-cors-proxy.herokuapp.com/https://swapi.co/api/people')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({characters: data.results})
-        console.log(this.state)
-      })
-  }
+  state = { characters: [] }
 
   componentDidMount() {
-    console.log(this.state.characters)
+    console.log("mounting")
+    fetch(
+      "http://galvanize-cors-proxy.herokuapp.com/https://swapi.co/api/people"
+    )
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ characters: data.results })
+      })
   }
 
   render() {
@@ -27,13 +24,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          Here's a list of students in Galvanize!
-        </p>
-        <CharacterList characters={this.state.characters}/>
+        <p className="App-intro">Here is a list of students in Galvanize!</p>
+        <CharacterList characters={this.state.characters} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
